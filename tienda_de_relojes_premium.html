@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrono Elite - Relojes Exclusivos</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Playfair Display para títulos elegantes e Inter para texto -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        // Configuración de Tailwind para personalizar colores y fuentes
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#D4AF37',
+                            500: '#AA8C2C',
+                        },
+                        dark: {
+                            900: '#121212',
+                            800: '#1E1E1E',
+                            700: '#2D2D2D'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilos personalizados adicionales */
+        .glass-nav {
+            background: rgba(18, 18, 18, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .hero-bg {
+            background-image: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.9)), url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=2080&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.15);
+        }
+
+        /* Ocultar barra de desplazamiento manteniendo funcionalidad */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-dark-900 text-gray-200 font-sans antialiased selection:bg-gold-500 selection:text-white">
+
+    <!-- Número de WhatsApp global (Asegúrate de agregar el código de país si es necesario) -->
+    <script>
+        // El número que proporcionaste
+        const WHATSAPP_NUMBER = "3231116425"; 
+        // Generador de enlaces para WhatsApp
+        function getWhatsAppLink(message) {
+            return `https://wa.me/52${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+        }
+    </script>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass-nav border-b border-white/5 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="font-serif text-2xl font-bold text-white tracking-wider flex items-center gap-2">
+                        <i class="fa-regular fa-clock text-gold-400"></i>
+                        CHRONO<span class="text-gold-400">ELITE</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#inicio" class="text-gray-300 hover:text-gold-400 px-3 py-2 text-sm font-medium transition-colors">Inicio</a>
+                    <a href="#coleccion" class="text-gray-300 hover:text-gold-400 px-3 py-2 text-sm font-medium transition-colors">Colección</a>
+                    <a href="#nosotros" class="text-gray-300 hover:text-gold-400 px-3 py-2 text-sm font-medium transition-colors">Nosotros</a>
+                    
+                    <button onclick="window.open(getWhatsAppLink('Hola, me gustaría recibir atención personalizada.'), '_blank')" 
+                            class="bg-transparent border border-gold-400 text-gold-400 hover:bg-gold-400 hover:text-dark-900 px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        Contáctanos
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-800 border-b border-white/10 absolute w-full">
+            <div class="px-2 pt-2 pb-6 space-y-1 sm:px-3 flex flex-col gap-2">
+                <a href="#inicio" class="text-gray-300 hover:text-gold-400 block px-3 py-3 rounded-md text-base font-medium">Inicio</a>
+                <a href="#coleccion" class="text-gray-300 hover:text-gold-400 block px-3 py-3 rounded-md text-base font-medium">Colección</a>
+                <a href="#nosotros" class="text-gray-300 hover:text-gold-400 block px-3 py-3 rounded-md text-base font-medium">Nosotros</a>
+                <button onclick="window.open(getWhatsAppLink('Hola, me gustaría recibir atención personalizada.'), '_blank')" 
+                        class="mt-4 w-full bg-gold-400 text-dark-900 px-5 py-3 rounded-md text-base font-bold flex justify-center items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    Contactar por WhatsApp
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-bg h-screen flex items-center relative pt-20">
+        <!-- Overlay oscuro para mejorar lectura -->
+        <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent z-0"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center lg:text-left">
+            <span class="text-gold-400 uppercase tracking-[0.3em] text-sm font-semibold mb-4 block animate-fade-in-up">Alta Relojería</span>
+            <h1 class="font-serif text-5xl md:text-7xl font-bold text-white leading-tight mb-6 max-w-3xl animate-fade-in-up" style="animation-delay: 0.2s;">
+                El tiempo medido en <span class="italic font-light text-gold-400">perfección.</span>
+            </h1>
+            <p class="mt-4 text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0 mb-10 animate-fade-in-up" style="animation-delay: 0.4s;">
+                Descubre nuestra colección exclusiva de relojes de lujo. Diseños atemporales que combinan ingeniería de precisión con elegancia absoluta.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up" style="animation-delay: 0.6s;">
+                <a href="#coleccion" class="bg-gold-400 hover:bg-gold-500 text-dark-900 px-8 py-4 rounded-full font-bold transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:shadow-[0_0_25px_rgba(212,175,55,0.5)]">
+                    Explorar Colección
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collection Section (Products) -->
+    <section id="coleccion" class="py-24 bg-dark-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-4xl text-white font-bold mb-4">Nuestra Colección</h2>
+                <div class="w-24 h-1 bg-gold-400 mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto">Seleccionados meticulosamente para aquellos que aprecian los detalles finos y la artesanía excepcional.</p>
+            </div>
+
+            <!-- Contenedor dinámico de productos -->
+            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Los productos se inyectarán aquí vía JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features / About Section -->
+    <section id="nosotros" class="py-20 bg-dark-800 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                <div class="p-6 rounded-2xl bg-dark-900 border border-white/5">
+                    <div class="w-16 h-16 bg-dark-800 rounded-full flex items-center justify-center mx-auto mb-6 text-gold-400 text-2xl border border-gold-400/20">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <h3 class="text-xl font-serif text-white font-bold mb-3">Autenticidad</h3>
+                    <p class="text-gray-400 text-sm">Garantizamos la originalidad del 100% de nuestras piezas. Cada reloj pasa por una rigurosa inspección.</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-dark-900 border border-white/5">
+                    <div class="w-16 h-16 bg-dark-800 rounded-full flex items-center justify-center mx-auto mb-6 text-gold-400 text-2xl border border-gold-400/20">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-xl font-serif text-white font-bold mb-3">Garantía Extendida</h3>
+                    <p class="text-gray-400 text-sm">Ofrecemos hasta 2 años de garantía en mecanismos internos y mantenimiento preventivo.</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-dark-900 border border-white/5">
+                    <div class="w-16 h-16 bg-dark-800 rounded-full flex items-center justify-center mx-auto mb-6 text-gold-400 text-2xl border border-gold-400/20">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <h3 class="text-xl font-serif text-white font-bold mb-3">Envío Seguro</h3>
+                    <p class="text-gray-400 text-sm">Envíos asegurados a todo el país. Su inversión viaja protegida hasta la puerta de su casa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-900 pt-16 pb-8 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Branding -->
+                <div class="col-span-1 lg:col-span-2">
+                    <a href="#" class="font-serif text-2xl font-bold text-white tracking-wider flex items-center gap-2 mb-4">
+                        <i class="fa-regular fa-clock text-gold-400"></i>
+                        CHRONO<span class="text-gold-400">ELITE</span>
+                    </a>
+                    <p class="text-gray-400 text-sm max-w-sm mb-6">
+                        Distribuidores exclusivos de relojes de lujo. Encuentra la pieza perfecta que defina tu estilo y marque tu tiempo.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-dark-800 flex items-center justify-center text-gray-400 hover:text-gold-400 hover:bg-white/5 transition-colors">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-dark-800 flex items-center justify-center text-gray-400 hover:text-gold-400 hover:bg-white/5 transition-colors">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Enlaces Rápidos -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 uppercase text-sm tracking-wider">Enlaces</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#inicio" class="hover:text-gold-400 transition-colors">Inicio</a></li>
+                        <li><a href="#coleccion" class="hover:text-gold-400 transition-colors">Colección</a></li>
+                        <li><a href="#nosotros" class="hover:text-gold-400 transition-colors">Nosotros y Garantías</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contacto -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 uppercase text-sm tracking-wider">Contacto</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-brands fa-whatsapp text-gold-400 mt-1 text-lg"></i>
+                            <div>
+                                <span class="block">Atención Inmediata</span>
+                                <button onclick="window.open(getWhatsAppLink('Hola, necesito información general de la tienda.'), '_blank')" class="text-white hover:text-gold-400 font-medium">
+                                    +52 323 111 6425
+                                </button>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-regular fa-envelope text-gold-400 mt-1 text-base"></i>
+                            <span>ventas@chronoelite.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">
+                    &copy; <span id="year"></span> ChronoElite. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón flotante de WhatsApp -->
+    <button onclick="window.open(getWhatsAppLink('Hola, vengo de la página web y quiero hacer una consulta rápida.'), '_blank')" 
+            class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-3xl shadow-[0_4px_15px_rgba(34,197,94,0.4)] hover:scale-110 hover:bg-green-600 transition-all duration-300 z-50 animate-bounce" style="animation-duration: 2s;">
+        <i class="fa-brands fa-whatsapp"></i>
+    </button>
+
+    <script>
+        // Actualizar el año en el footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Lógica del Menú Móvil
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = mobileMenuBtn.querySelector('i');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if(mobileMenu.classList.contains('hidden')){
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            }
+        });
+
+        // Cerrar menú móvil al hacer clic en un enlace
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // Cambio de estilo del Navbar al hacer scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg', 'bg-dark-900/95');
+                nav.classList.remove('glass-nav');
+            } else {
+                nav.classList.remove('shadow-lg', 'bg-dark-900/95');
+                nav.classList.add('glass-nav');
+            }
+        });
+
+        // --- DATOS DE LOS RELOJES (Mock Data) ---
+        // Aquí puedes agregar, editar o quitar productos fácilmente.
+        const productos = [
+            {
+                id: 1,
+                nombre: "Rolex Submariner Date",
+                marca: "Rolex",
+                precio: "$14,500 USD",
+                imagen: "https://images.unsplash.com/photo-1526045612212-70cb359b22b1?q=80&w=2070&auto=format&fit=crop",
+                tag: "Nuevo",
+                descripcionBreve: "Acero Oystersteel y oro amarillo. El reloj de buceo por excelencia."
+            },
+            {
+                id: 2,
+                nombre: "Omega Speedmaster",
+                marca: "Omega",
+                precio: "$tu gefa USD",
+                imagen: "https://images.unsplash.com/photo-1622434641406-a158123450f9?q=80&w=2004&auto=format&fit=crop",
+                tag: "Icono",
+                descripcionBreve: "Moonwatch Professional Chronograph. Historia en tu muñeca."
+            },
+            {
+                id: 3,
+                nombre: "Patek Philippe Nautilus",
+                marca: "Patek Philippe",
+                precio: "Consultar",
+                imagen: "https://images.unsplash.com/photo-1547996160-81dfa63595aa?q=80&w=1974&auto=format&fit=crop",
+                tag: "Exclusivo",
+                descripcionBreve: "Elegancia deportiva. Esfera azul con relieve horizontal."
+            },
+            {
+                id: 4,
+                nombre: "Audemars Piguet Royal Oak",
+                marca: "Audemars Piguet",
+                precio: "$32,000 USD",
+                imagen: "https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?q=80&w=2070&auto=format&fit=crop",
+                tag: "Premium",
+                descripcionBreve: "Diseño octogonal inconfundible. Automático, acero inoxidable."
+            },
+            {
+                id: 5,
+                nombre: "Tag Heuer Carrera",
+                marca: "Tag Heuer",
+                precio: "$4,100 USD",
+                imagen: "https://images.unsplash.com/photo-1587836374828-ecaf1536624b?q=80&w=1974&auto=format&fit=crop",
+                tag: "Vendido",
+                descripcionBreve: "Cronógrafo automático. Inspirado en el automovilismo."
+            },
+            {
+                id: 6,
+                nombre: "Cartier Santos",
+                marca: "Cartier",
+                precio: "$6,800 USD",
+                imagen: "https://images.unsplash.com/photo-1594535182308-4ebbc9e8455b?q=80&w=2070&auto=format&fit=crop",
+                tag: "Clásico",
+                descripcionBreve: "Caja cuadrada con tornillos expuestos. Un clásico atemporal."
+            }
+        ];
+
+        // --- RENDERIZADO DE PRODUCTOS ---
+        const productsGrid = document.getElementById('products-grid');
+
+        // Función para renderizar los productos en el HTML
+        function renderProducts() {
+            productsGrid.innerHTML = ''; // Limpiar grilla
+
+            productos.forEach(producto => {
+                // Crear el mensaje predeterminado para WhatsApp con los detalles del producto
+                const mensajeWa = `¡Hola! Me interesa el reloj ${producto.nombre} (${producto.marca}). ¿Podrían darme más información?`;
+                const linkWa = getWhatsAppLink(mensajeWa);
+                
+                // Determinar el color del tag según su texto
+                let tagColor = "bg-gold-500 text-dark-900";
+                if(producto.tag === "Vendido") tagColor = "bg-red-900/80 text-white";
+                if(producto.tag === "Exclusivo") tagColor = "bg-purple-900/80 text-white";
+
+                const cardHTML = `
+                    <div class="product-card bg-dark-800 rounded-xl overflow-hidden border border-white/5 flex flex-col h-full group relative">
+                        
+                        <!-- Tag -->
+                        <div class="absolute top-4 left-4 ${tagColor} px-3 py-1 text-xs font-bold rounded-full z-10 shadow-lg uppercase tracking-wide">
+                            ${producto.tag}
+                        </div>
+
+                        <!-- Imagen -->
+                        <div class="relative h-72 overflow-hidden bg-dark-900">
+                            <img src="${producto.imagen}" alt="${producto.nombre}" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100">
+                            <!-- Overlay al hover -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+
+                        <!-- Contenido -->
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <span class="text-gold-400 text-xs font-bold uppercase tracking-widest block mb-1">${producto.marca}</span>
+                                    <h3 class="text-xl font-serif text-white font-bold leading-tight group-hover:text-gold-400 transition-colors">${producto.nombre}</h3>
+                                </div>
+                            </div>
+                            
+                            <p class="text-gray-400 text-sm mt-2 mb-6 flex-grow line-clamp-2">${producto.descripcionBreve}</p>
+                            
+                            <div class="flex items-center justify-between mt-auto pt-4 border-t border-white/10">
+                                <span class="text-lg font-bold text-white">${producto.precio}</span>
+                                
+                                ${producto.tag !== 'Vendido' ? `
+                                    <button onclick="window.open('${linkWa}', '_blank')" 
+                                            class="bg-white/5 hover:bg-gold-400 text-white hover:text-dark-900 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
+                                            title="Comprar vía WhatsApp">
+                                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                                    </button>
+                                ` : `
+                                    <span class="text-xs text-gray-500 uppercase tracking-widest">No Disponible</span>
+                                `}
+                            </div>
+                            
+                            ${producto.tag !== 'Vendido' ? `
+                                <button onclick="window.open('${linkWa}', '_blank')" 
+                                        class="w-full mt-4 py-3 bg-transparent border border-gold-400/50 hover:bg-gold-400 text-gold-400 hover:text-dark-900 font-semibold rounded-lg transition-all duration-300 flex justify-center items-center gap-2">
+                                    <i class="fa-brands fa-whatsapp"></i> Me interesa
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+                productsGrid.innerHTML += cardHTML;
+            });
+        }
+
+        // Ejecutar la renderización al cargar la página
+        renderProducts();
+
+    </script>
+</body>
+</html>
